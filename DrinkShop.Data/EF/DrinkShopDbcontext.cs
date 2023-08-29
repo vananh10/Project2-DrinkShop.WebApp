@@ -1,5 +1,6 @@
 ﻿using DrinkShop.Data.Configurations;
 using DrinkShop.Data.Entities;
+using DrinkShop.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace DrinkShop.Data.EF
@@ -11,6 +12,7 @@ namespace DrinkShop.Data.EF
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Configure using Fluent API
             modelBuilder.ApplyConfiguration(new CartConfiguration());
 
             modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
@@ -27,7 +29,8 @@ namespace DrinkShop.Data.EF
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
 
-
+            //Data seeding
+            modelBuilder.Seed();
             //base.OnModelCreating(modelBuilder);
         }
 
