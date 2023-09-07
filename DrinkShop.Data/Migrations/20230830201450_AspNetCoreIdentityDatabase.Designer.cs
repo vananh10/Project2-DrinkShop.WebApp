@@ -4,6 +4,7 @@ using DrinkShop.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinkShop.Data.Migrations
 {
     [DbContext(typeof(DrinkShopDbcontext))]
-    partial class DrinkShopDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20230830201450_AspNetCoreIdentityDatabase")]
+    partial class AspNetCoreIdentityDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,16 +79,6 @@ namespace DrinkShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("88cca786-c428-4a90-b955-9360aaab0238"),
-                            ConcurrencyStamp = "dff28837-18b4-4a44-8084-ebc0217c3bbd",
-                            Description = "Administrator role",
-                            Name = "admin",
-                            NormalizedName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("DrinkShop.Data.Entities.AppUser", b =>
@@ -152,27 +145,6 @@ namespace DrinkShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("704674ac-38e3-43ac-ae84-4ad2c3a2f701"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1112231a-1105-4029-ac9d-b4a12a206452",
-                            Dob = new DateTime(2023, 8, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "nguyenthivananh130723@gmail.com",
-                            EmailConfirmed = true,
-                            FirstName = "Nguyen",
-                            LastName = "Van Anh",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "nguyenthivananh130723@gmail.com",
-                            NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEETVrLAxUIxWlB6Dx9mQjw0sr6WusjS9wdGe4BcEGeIQpbIOxq76E/YpIijSZjBsWQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            TwoFactorEnabled = false,
-                            UserName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("DrinkShop.Data.Entities.Cart", b =>
@@ -508,7 +480,7 @@ namespace DrinkShop.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreate = new DateTime(2023, 9, 7, 6, 55, 23, 749, DateTimeKind.Local).AddTicks(2195),
+                            DateCreate = new DateTime(2023, 8, 31, 3, 14, 50, 79, DateTimeKind.Local).AddTicks(8623),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
@@ -854,13 +826,6 @@ namespace DrinkShop.Data.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("AppUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = new Guid("704674ac-38e3-43ac-ae84-4ad2c3a2f701"),
-                            RoleId = new Guid("88cca786-c428-4a90-b955-9360aaab0238")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
