@@ -8,6 +8,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using DrinkShop.Data.Configurations;
+using Microsoft.AspNetCore.Identity;
 
 namespace DrinkShop.Data.Extensions
 {
@@ -82,10 +83,44 @@ namespace DrinkShop.Data.Extensions
             modelBuilder.Entity<ProductInCategory>().HasData(
                 new ProductInCategory() { ProductId = 1, CategoryId = 1 }
                 );
+
+             
+            // any guid
+            var roleId = new Guid("88CCA786-C428-4A90-B955-9360AAAB0238");
+            var adminId = new Guid("704674AC-38E3-43AC-AE84-4AD2C3A2F701");
+            modelBuilder.Entity<AppRole>().HasData(new AppRole
+            {
+                Id = roleId,
+                Name = "admin",
+                NormalizedName = "admin",
+                Description = "Administrator role"
+            });
+
+            var hasher = new PasswordHasher<AppUser>();
+            modelBuilder.Entity<AppUser>().HasData(new AppUser
+            {
+                Id = adminId,
+                UserName = "admin",
+                NormalizedUserName = "admin",
+                Email = "nguyenthivananh130723@gmail.com",
+                NormalizedEmail = "nguyenthivananh130723@gmail.com",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "1234"),
+                SecurityStamp = string.Empty,
+                FirstName = "Nguyen",
+                LastName = "Van Anh",
+                Dob = new DateTime(2023, 08, 29)
+            });
+
+            modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>
+            {
+                RoleId = roleId,
+                UserId = adminId
+            });
         }
 
 
+
+
     }
-
 }
-
