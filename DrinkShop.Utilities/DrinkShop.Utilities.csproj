@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DrinkShop.Data\DrinkShop.Data.csproj" />
-    <ProjectReference Include="..\DrinkShop.Utilities\DrinkShop.Utilities.csproj" />
-  </ItemGroup>
-
 </Project>
