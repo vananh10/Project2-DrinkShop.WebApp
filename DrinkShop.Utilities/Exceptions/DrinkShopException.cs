@@ -22,3 +22,4 @@ namespace DrinkShop.Utilities.Exceptions
         {
         }
     }
+}
