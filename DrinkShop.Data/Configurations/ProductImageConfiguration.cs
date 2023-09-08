@@ -13,7 +13,7 @@ namespace DrinkShop.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<ProductImage> builder)
         {
-            builder.ToTable("Carts");
+            builder.ToTable("ProductImages");
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id).UseIdentityColumn();
