@@ -1,11 +1,7 @@
-﻿using DrinkShop.Application.Catalog.Products.Dtos;
-using DrinkShop.Application.Catalog.Products.Dtos.Manage;
-using DrinkShop.Application.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DrinkShopSolution.ViewModels.Catalog.Products;
+using DrinkShopSolution.ViewModels.Catalog.Products.Manage;
+using DrinkShopSolution.ViewModels.Common;
+using Microsoft.AspNetCore.Http;
 
 namespace DrinkShop.Application.Catalog.Products
 {
@@ -25,5 +21,12 @@ namespace DrinkShop.Application.Catalog.Products
 
         Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request);
 
+        Task<int> AddImages(int productId, List<IFormFile> file);
+
+        Task<int> RemoveImages(int imageId);
+
+        Task<int> UpdateImages(int imageId, string caption, bool isDefault);
+
+        Task<List<ProductImageViewModel>> GetListImage(int productId);
     }
 }

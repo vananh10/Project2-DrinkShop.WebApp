@@ -1,11 +1,11 @@
-﻿using DrinkShop.Application.Dtos;
+﻿using DrinkShopSolution.ViewModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DrinkShop.Application.Catalog.Products.Dtos.Public
+namespace DrinkShopSolution.ViewModels.Catalog.Products.Public
 {
     public class GetProductPagingRequest : PagingRequestBase
     {

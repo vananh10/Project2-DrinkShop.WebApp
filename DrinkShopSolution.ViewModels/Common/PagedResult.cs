@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DrinkShop.Application.Dtos
+namespace DrinkShopSolution.ViewModels.Common
 {
     public class PagedResult<T>
     {

@@ -1,11 +1,6 @@
-﻿using DrinkShop.Application.Catalog.Products.Dtos;
-using DrinkShop.Application.Catalog.Products.Dtos.Public;
-using DrinkShop.Application.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DrinkShopSolution.ViewModels.Catalog.Products;
+using DrinkShopSolution.ViewModels.Catalog.Products.Public;
+using DrinkShopSolution.ViewModels.Common;
 
 namespace DrinkShop.Application.Catalog.Products
 {
