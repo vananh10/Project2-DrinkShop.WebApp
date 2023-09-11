@@ -1,7 +1,7 @@
-﻿using DrinkShop.Application.Catalog.Products.Dtos;
-using DrinkShop.Application.Catalog.Products.Dtos.Public;
-using DrinkShop.Application.Dtos;
-using DrinkShop.Data.EF;
+﻿using DrinkShop.Data.EF;
+using DrinkShopSolution.ViewModels.Catalog.Products;
+using DrinkShopSolution.ViewModels.Catalog.Products.Public;
+using DrinkShopSolution.ViewModels.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

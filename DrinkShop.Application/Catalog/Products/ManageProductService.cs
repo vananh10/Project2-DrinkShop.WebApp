@@ -1,26 +1,29 @@
-﻿using DrinkShop.Application.Catalog.Products.Dtos;
-using DrinkShop.Application.Catalog.Products.Dtos.Manage;
-using DrinkShop.Application.Dtos;
-using DrinkShop.Data.EF;
+﻿using DrinkShop.Data.EF;
 using DrinkShop.Data.Entities;
 using DrinkShop.Utilities.Exceptions;
-using System.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Azure.Core;
+using DrinkShopSolution.ViewModels.Catalog.Products.Manage;
+using DrinkShopSolution.ViewModels.Common;
+using DrinkShopSolution.ViewModels.Catalog.Products;
+using Microsoft.AspNetCore.Http;
+using System.Net.Http.Headers;
+using DrinkShop.Application.Common;
 
 namespace DrinkShop.Application.Catalog.Products
 {
     public class ManageProductService : IMageneProductService
     {
         private readonly DrinkShopDbcontext _context;
-        public ManageProductService(DrinkShopDbcontext context)
+        private readonly IStorageService _storageService;
+        public ManageProductService(DrinkShopDbcontext context, IStorageService storageService)
         {
             _context = context;
+            _storageService = storageService;
+        }
+
+        public Task<int> AddImages(int productId, List<IFormFile> file)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task AddViewcount(int productId)
@@ -52,15 +55,41 @@ namespace DrinkShop.Application.Catalog.Products
                     }
                 }
             };
+            //Save Image
+            if (request.ThumbnailImage != null)
+            {
+                product.ProductImages = new List<ProductImage>()
+                {
+                    new ProductImage()
+                    {
+                        Caption = "Thumbnail image",
+                        DateCreated = DateTime.Now,
+                        FileSize = request.ThumbnailImage.Length,
+                        ImagePath = await this.SaveFile(request.ThumbnailImage),
+                        IsDefault = true,
+                        SortOrder = 1
+                    }
+                };
+            }
+
             _context.Products.Add(product);
             return await _context.SaveChangesAsync();
         }
 
+
         public async Task<int> Detele(int productId)
         {
             var product = await _context.Products.FindAsync(productId);
-            if (product == null) throw new DrinkShopException($"Cannot file a product: {productId}");
+            if (product == null) throw new DrinkShopException($"Cannot find a product: {productId}");
+
+            var images = _context.ProductImages.Where(i => i.ProductId == productId);
+            foreach (var image in images)
+            {
+                await _storageService.DeleteFileAsync(image.ImagePath);
+            }
+
             _context.Products.Remove(product);
+
             return await _context.SaveChangesAsync();
         }
 
@@ -108,6 +137,21 @@ namespace DrinkShop.Application.Catalog.Products
             return pagedResult;
         }
 
+        public Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<ProductImageViewModel>> GetListImage(int productId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> RemoveImages(int imageId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<int> Update(ProductUpdateRequest request)
         {
             var product = await _context.Products.FindAsync(request.Id);
@@ -121,6 +165,11 @@ namespace DrinkShop.Application.Catalog.Products
             productTranslations.Details = request.Details;
             return await _context.SaveChangesAsync();
 
+        }
+
+        public Task<int> UpdateImages(int imageId, string caption, bool isDefault)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<bool> UpdatePrice(int productId, decimal newPrice)
@@ -137,6 +186,14 @@ namespace DrinkShop.Application.Catalog.Products
             if (product == null) throw new DrinkShopException($"Cannot find a product with Id: {productId}");
             product.Stock += addedQuantity;
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        private async Task<string> SaveFile(IFormFile file)
+        {
+            var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
+            await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
+            return fileName;
         }
     }
 }

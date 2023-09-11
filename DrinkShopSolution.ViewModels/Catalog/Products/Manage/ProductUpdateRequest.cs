@@ -1,11 +1,6 @@
-﻿using DrinkShop.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 
-namespace DrinkShop.Application.Catalog.Products.Dtos.Manage
+namespace DrinkShopSolution.ViewModels.Catalog.Products.Manage
 {
     public class ProductUpdateRequest
     {
@@ -19,6 +14,6 @@ namespace DrinkShop.Application.Catalog.Products.Dtos.Manage
         public string SeoAlias { get; set; }
         public string LanguageId { set; get; }
 
-
+        public IFormFile ThumbnailImage { get; set; }
     }
 }

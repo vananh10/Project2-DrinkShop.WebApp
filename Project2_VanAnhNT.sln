@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrinkShop.Application", "Dr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkShop.Utilities", "DrinkShop.Utilities\DrinkShop.Utilities.csproj", "{1A2DA25A-200D-4291-BC1D-834D1DB4071F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkShopSolution.ViewModels", "DrinkShopSolution.ViewModels\DrinkShopSolution.ViewModels.csproj", "{8688A4F3-DC40-463D-B96A-D4B09B6F43D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1A2DA25A-200D-4291-BC1D-834D1DB4071F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A2DA25A-200D-4291-BC1D-834D1DB4071F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A2DA25A-200D-4291-BC1D-834D1DB4071F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8688A4F3-DC40-463D-B96A-D4B09B6F43D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8688A4F3-DC40-463D-B96A-D4B09B6F43D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8688A4F3-DC40-463D-B96A-D4B09B6F43D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8688A4F3-DC40-463D-B96A-D4B09B6F43D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
